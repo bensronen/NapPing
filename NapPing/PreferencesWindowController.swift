@@ -16,7 +16,7 @@ final class PreferencesWindowController: NSWindowController {
                               styleMask: [.titled, .closable, .miniaturizable],
                               backing: .buffered,
                               defer: false)
-        window.title = "NotchCam Settings"
+        window.title = "NapPing Settings"
         window.isReleasedWhenClosed = false
         window.center()
 

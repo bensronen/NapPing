@@ -16,8 +16,8 @@ final class CameraSessionCoordinator: NSObject, ObservableObject {
     let session = AVCaptureSession()
     let frames = PassthroughSubject<CVPixelBuffer, Never>()
 
-    private let sessionQueue = DispatchQueue(label: "com.notchcam.capture", qos: .userInteractive)
-    private let videoOutputQueue = DispatchQueue(label: "com.notchcam.capture.frames", qos: .userInitiated)
+    private let sessionQueue = DispatchQueue(label: "com.napping.capture", qos: .userInteractive)
+    private let videoOutputQueue = DispatchQueue(label: "com.napping.capture.frames", qos: .userInitiated)
     private var isConfigured = false
     private var isRequestingAccess = false
     private let videoDataOutput = AVCaptureVideoDataOutput()

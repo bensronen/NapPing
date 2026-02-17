@@ -26,7 +26,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private let toggleOverlayItem = NSMenuItem(title: "Hide overlay", action: #selector(toggleOverlayFromMenu), keyEquivalent: "")
     private let recenterItem = NSMenuItem(title: "Re-center by notch", action: #selector(recenterFromMenu), keyEquivalent: "")
     private let toggleInteractionItem = NSMenuItem(title: "Lock overlay (ignore clicks)", action: #selector(toggleInteractionFromMenu), keyEquivalent: "")
-    private let quitItem = NSMenuItem(title: "Quit NotchCam", action: #selector(quitFromMenu), keyEquivalent: "q")
+    private let quitItem = NSMenuItem(title: "Quit NapPing", action: #selector(quitFromMenu), keyEquivalent: "q")
     private let preferences = PreferencesStore()
     @MainActor private lazy var preferencesWindowController = PreferencesWindowController(controller: self)
 
@@ -147,7 +147,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         menu.addItem(.separator())
         menu.addItem(withTitle: "Settings…", action: #selector(openPreferencesFromMenu), keyEquivalent: "")
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Quit NotchCam", action: #selector(quitFromMenu), keyEquivalent: "")
+        menu.addItem(withTitle: "Quit NapPing", action: #selector(quitFromMenu), keyEquivalent: "")
 
         menu.items.forEach { $0.target = self }
         return menu
@@ -177,8 +177,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     private func configureStatusItem() {
         if let button = statusItem.button {
-            button.toolTip = "NotchCam"
-            if let image = NSImage(systemSymbolName: "camera.viewfinder", accessibilityDescription: "NotchCam") {
+            button.toolTip = "NapPing"
+            if let image = NSImage(systemSymbolName: "camera.viewfinder", accessibilityDescription: "NapPing") {
                 button.image = image
                 button.imagePosition = .imageOnly
             } else {

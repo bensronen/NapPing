@@ -2,7 +2,7 @@ import AppKit
 
 final class WindowStateStore {
     private let defaults = UserDefaults.standard
-    private let frameKey = "com.notchcam.overlay.frame"
+    private let frameKey = "com.napping.overlay.frame"
 
     func restoredFrame(defaultSize: NSSize) -> NSRect {
         guard let stored = defaults.string(forKey: frameKey) else {

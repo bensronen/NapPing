@@ -20,7 +20,7 @@ struct MenuBarView: View {
             Button(role: .destructive) {
                 controller.quitApp()
             } label: {
-                Label("Quit NotchCam", systemImage: "power")
+                Label("Quit NapPing", systemImage: "power")
             }
         }
         .buttonStyle(.borderless)

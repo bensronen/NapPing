@@ -29,8 +29,8 @@ final class PreferencesStore {
     }
 
     private enum Keys {
-        static let showDockIcon = "com.notchcam.preferences.showDockIcon"
-        static let cameraPreviewEnabled = "com.notchcam.preferences.cameraPreviewEnabled"
-        static let sleepDetectionEnabled = "com.notchcam.preferences.sleepDetectionEnabled"
+        static let showDockIcon = "com.napping.preferences.showDockIcon"
+        static let cameraPreviewEnabled = "com.napping.preferences.cameraPreviewEnabled"
+        static let sleepDetectionEnabled = "com.napping.preferences.sleepDetectionEnabled"
     }
 }

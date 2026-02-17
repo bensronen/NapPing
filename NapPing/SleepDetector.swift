@@ -17,7 +17,7 @@ final class SleepDetector: ObservableObject {
     let sleepDetected = PassthroughSubject<Void, Never>()
 
     private let configuration: Configuration
-    private let processingQueue = DispatchQueue(label: "com.notchcam.sleepdetector", qos: .userInitiated)
+    private let processingQueue = DispatchQueue(label: "com.napping.sleepdetector", qos: .userInitiated)
     private var cancellables: Set<AnyCancellable> = []
 
     private var lastProcessedAt: CFAbsoluteTime = 0

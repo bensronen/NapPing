@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct NotchCamApp: App {
+struct NapPingApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     var body: some Scene {
