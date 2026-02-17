@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00C2F6322B6CCAA400A8192A /* NotchCamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F62A2B6CCAA400A8192A /* NotchCamApp.swift */; };
+		00C2F6332B6CCAA400A8192A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F62B2B6CCAA400A8192A /* AppDelegate.swift */; };
+		00C2F6342B6CCAA400A8192A /* CameraSessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F62C2B6CCAA400A8192A /* CameraSessionCoordinator.swift */; };
+		00C2F6352B6CCAA400A8192A /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F62D2B6CCAA400A8192A /* CameraPreviewView.swift */; };
+		00C2F6362B6CCAA400A8192A /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F62E2B6CCAA400A8192A /* OverlayWindowController.swift */; };
+		00C2F6372B6CCAA400A8192A /* OverlayRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F62F2B6CCAA400A8192A /* OverlayRootView.swift */; };
+		00C2F6382B6CCAA400A8192A /* WindowStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F6302B6CCAA400A8192A /* WindowStateStore.swift */; };
+		00C2F6392B6CCAA400A8192A /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F6312B6CCAA400A8192A /* MenuBarView.swift */; };
+		00C2F63C2B6CCAA400A8192A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C2F60F2B6CCAA300A8192A /* Assets.xcassets */; };
+		00C2F63E2B6CD00000A8192A /* SleepDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F63A2B6CD00000A8192A /* SleepDetector.swift */; };
+		00C2F63F2B6CD00000A8192A /* NotchNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F63B2B6CD00000A8192A /* NotchNotificationController.swift */; };
+		00C2F6422B6CD05000A8192A /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F6412B6CD05000A8192A /* PreferencesStore.swift */; };
+		00C2F6462B6CE00000A8192A /* NotchCamNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F6432B6CE00000A8192A /* NotchCamNotifications.swift */; };
+		00C2F6472B6CE00000A8192A /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F6442B6CE00000A8192A /* PreferencesView.swift */; };
+		00C2F6482B6CE00000A8192A /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2F6452B6CE00000A8192A /* PreferencesWindowController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00C2F5F92B6CCAA200A8192A /* NotchCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C2F60F2B6CCAA300A8192A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00C2F6102B6CCAA300A8192A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00C2F62A2B6CCAA400A8192A /* NotchCamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchCamApp.swift; sourceTree = "<group>"; };
+		00C2F62B2B6CCAA400A8192A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		00C2F62C2B6CCAA400A8192A /* CameraSessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSessionCoordinator.swift; sourceTree = "<group>"; };
+		00C2F62D2B6CCAA400A8192A /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		00C2F62E2B6CCAA400A8192A /* OverlayWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayWindowController.swift; sourceTree = "<group>"; };
+		00C2F62F2B6CCAA400A8192A /* OverlayRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayRootView.swift; sourceTree = "<group>"; };
+		00C2F6302B6CCAA400A8192A /* WindowStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateStore.swift; sourceTree = "<group>"; };
+		00C2F6312B6CCAA400A8192A /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		00C2F63A2B6CD00000A8192A /* SleepDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetector.swift; sourceTree = "<group>"; };
+		00C2F63B2B6CD00000A8192A /* NotchNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchNotificationController.swift; sourceTree = "<group>"; };
+		00C2F6412B6CD05000A8192A /* PreferencesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStore.swift; sourceTree = "<group>"; };
+		00C2F6432B6CE00000A8192A /* NotchCamNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchCamNotifications.swift; sourceTree = "<group>"; };
+		00C2F6442B6CE00000A8192A /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		00C2F6452B6CE00000A8192A /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00C2F6132B6CCAA300A8192A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00C2F5F32B6CCAA200A8192A = {
+			isa = PBXGroup;
+			children = (
+				00C2F5F42B6CCAA200A8192A /* NotchCam */,
+				00C2F5F62B6CCAA200A8192A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00C2F5F42B6CCAA200A8192A /* NotchCam */ = {
+			isa = PBXGroup;
+			children = (
+				00C2F62A2B6CCAA400A8192A /* NotchCamApp.swift */,
+				00C2F62B2B6CCAA400A8192A /* AppDelegate.swift */,
+				00C2F62C2B6CCAA400A8192A /* CameraSessionCoordinator.swift */,
+				00C2F62D2B6CCAA400A8192A /* CameraPreviewView.swift */,
+				00C2F63A2B6CD00000A8192A /* SleepDetector.swift */,
+				00C2F63B2B6CD00000A8192A /* NotchNotificationController.swift */,
+				00C2F6412B6CD05000A8192A /* PreferencesStore.swift */,
+				00C2F6432B6CE00000A8192A /* NotchCamNotifications.swift */,
+				00C2F6442B6CE00000A8192A /* PreferencesView.swift */,
+				00C2F6452B6CE00000A8192A /* PreferencesWindowController.swift */,
+				00C2F62E2B6CCAA400A8192A /* OverlayWindowController.swift */,
+				00C2F62F2B6CCAA400A8192A /* OverlayRootView.swift */,
+				00C2F6312B6CCAA400A8192A /* MenuBarView.swift */,
+				00C2F6302B6CCAA400A8192A /* WindowStateStore.swift */,
+				00C2F60F2B6CCAA300A8192A /* Assets.xcassets */,
+				00C2F6102B6CCAA300A8192A /* Info.plist */,
+			);
+			path = NotchCam;
+			sourceTree = "<group>";
+		};
+		00C2F5F62B6CCAA200A8192A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00C2F5F92B6CCAA200A8192A /* NotchCam.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00C2F6072B6CCAA200A8192A /* NotchCam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00C2F61F2B6CCAA300A8192A /* Build configuration list for PBXNativeTarget "NotchCam" */;
+			buildPhases = (
+				00C2F6122B6CCAA300A8192A /* Sources */,
+				00C2F6132B6CCAA300A8192A /* Frameworks */,
+				00C2F6142B6CCAA300A8192A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotchCam;
+			productName = NotchCam;
+			productReference = 00C2F5F92B6CCAA200A8192A /* NotchCam.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00C2F5FE2B6CCAA200A8192A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				ORGANIZATIONNAME = "Ben Ronen";
+			};
+			buildConfigurationList = 00C2F61E2B6CCAA300A8192A /* Build configuration list for PBXProject "NotchCam" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 00C2F5F32B6CCAA200A8192A;
+			productRefGroup = 00C2F5F62B6CCAA200A8192A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00C2F6072B6CCAA200A8192A /* NotchCam */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00C2F6142B6CCAA300A8192A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C2F63C2B6CCAA400A8192A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00C2F6122B6CCAA300A8192A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C2F6322B6CCAA400A8192A /* NotchCamApp.swift in Sources */,
+				00C2F6332B6CCAA400A8192A /* AppDelegate.swift in Sources */,
+				00C2F6342B6CCAA400A8192A /* CameraSessionCoordinator.swift in Sources */,
+				00C2F6352B6CCAA400A8192A /* CameraPreviewView.swift in Sources */,
+				00C2F63E2B6CD00000A8192A /* SleepDetector.swift in Sources */,
+				00C2F63F2B6CD00000A8192A /* NotchNotificationController.swift in Sources */,
+				00C2F6422B6CD05000A8192A /* PreferencesStore.swift in Sources */,
+				00C2F6462B6CE00000A8192A /* NotchCamNotifications.swift in Sources */,
+				00C2F6472B6CE00000A8192A /* PreferencesView.swift in Sources */,
+				00C2F6482B6CE00000A8192A /* PreferencesWindowController.swift in Sources */,
+				00C2F6362B6CCAA400A8192A /* OverlayWindowController.swift in Sources */,
+				00C2F6372B6CCAA400A8192A /* OverlayRootView.swift in Sources */,
+				00C2F6382B6CCAA400A8192A /* WindowStateStore.swift in Sources */,
+				00C2F6392B6CCAA400A8192A /* MenuBarView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		00C2F6202B6CCAA300A8192A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		00C2F6212B6CCAA300A8192A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		00C2F6222B6CCAA300A8192A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KK3N7SYUXA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = YES;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchCam/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benronen.NotchCam;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				SDKROOT = macosx;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		00C2F6232B6CCAA300A8192A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KK3N7SYUXA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = YES;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotchCam/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benronen.NotchCam;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				SDKROOT = macosx;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00C2F61E2B6CCAA300A8192A /* Build configuration list for PBXProject "NotchCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C2F6202B6CCAA300A8192A /* Debug */,
+				00C2F6212B6CCAA300A8192A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00C2F61F2B6CCAA300A8192A /* Build configuration list for PBXNativeTarget "NotchCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C2F6222B6CCAA300A8192A /* Debug */,
+				00C2F6232B6CCAA300A8192A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00C2F5FE2B6CCAA200A8192A /* Project object */;
+}
