@@ -12,7 +12,7 @@ final class PreferencesWindowController: NSWindowController {
         let hosting = NSHostingView(rootView: view)
         hosting.translatesAutoresizingMaskIntoConstraints = false
 
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 380, height: 240),
+        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 380, height: 290),
                               styleMask: [.titled, .closable, .miniaturizable],
                               backing: .buffered,
                               defer: false)
@@ -44,4 +44,3 @@ final class PreferencesWindowController: NSWindowController {
         window.makeKeyAndOrderFront(nil)
     }
 }
-

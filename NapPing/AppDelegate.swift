@@ -9,6 +9,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     @Published private(set) var cameraAuthorization: CameraSessionCoordinator.AuthorizationState = .idle
     @Published var cameraPreviewEnabled: Bool = true
     @Published var sleepDetectionEnabled: Bool = true
+    @Published var pauseWhenAllEyesClosedEnabled: Bool = false
 
     private let cameraCoordinator = CameraSessionCoordinator()
     private let sleepDetector = SleepDetector()
@@ -23,6 +24,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private let preferencesItem = NSMenuItem(title: "Settings…", action: #selector(openPreferencesFromMenu), keyEquivalent: ",")
     private let togglePreviewEnabledItem = NSMenuItem(title: "Enable camera preview", action: #selector(togglePreviewEnabledFromMenu), keyEquivalent: "")
     private let toggleSleepDetectionItem = NSMenuItem(title: "Enable sleep detection", action: #selector(toggleSleepDetectionFromMenu), keyEquivalent: "")
+    private let togglePauseWhenAllEyesClosedItem = NSMenuItem(title: "Pause media when everyone sleeps (1 minute)", action: #selector(togglePauseWhenAllEyesClosedFromMenu), keyEquivalent: "")
     private let toggleOverlayItem = NSMenuItem(title: "Hide overlay", action: #selector(toggleOverlayFromMenu), keyEquivalent: "")
     private let recenterItem = NSMenuItem(title: "Re-center by notch", action: #selector(recenterFromMenu), keyEquivalent: "")
     private let toggleInteractionItem = NSMenuItem(title: "Lock overlay (ignore clicks)", action: #selector(toggleInteractionFromMenu), keyEquivalent: "")
@@ -35,6 +37,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         NSApp.setActivationPolicy(showDockIcon ? .regular : .accessory)
         cameraPreviewEnabled = preferences.cameraPreviewEnabled
         sleepDetectionEnabled = preferences.sleepDetectionEnabled
+        pauseWhenAllEyesClosedEnabled = preferences.pauseWhenAllEyesClosedEnabled
         configureStatusItem()
 
         NotificationCenter.default.addObserver(self,
@@ -76,6 +79,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        sleepDetector.allFacesClosedLongEnough
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                self?.pauseActiveMediaPlayback()
+            }
+            .store(in: &cancellables)
 
         $cameraPreviewEnabled
             .dropFirst()
@@ -99,6 +108,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             }
             .store(in: &cancellables)
 
+        $pauseWhenAllEyesClosedEnabled
+            .dropFirst()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] enabled in
+                self?.preferences.pauseWhenAllEyesClosedEnabled = enabled
+                self?.sleepDetector.setPauseWhenAllEyesClosedEnabled(enabled)
+                self?.refreshStatusMenu()
+            }
+            .store(in: &cancellables)
+
         $showDockIcon
             .dropFirst()
             .receive(on: RunLoop.main)
@@ -109,6 +128,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             .store(in: &cancellables)
 
         sleepDetector.setEnabled(sleepDetectionEnabled)
+        sleepDetector.setPauseWhenAllEyesClosedEnabled(pauseWhenAllEyesClosedEnabled)
         applyPreviewVisibility()
         overlayController.bindLifecycleEvents()
         applyCapturePipelineState()
@@ -144,6 +164,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         menu.addItem(makeDockItem(title: "Camera + notifications", selector: #selector(setBothMode), isActive: cameraPreviewEnabled && sleepDetectionEnabled))
         menu.addItem(makeDockItem(title: "Off", selector: #selector(setOffMode), isActive: !cameraPreviewEnabled && !sleepDetectionEnabled))
 
+        menu.addItem(.separator())
+        let pauseItem = NSMenuItem(title: "Pause media when everyone sleeps (1 minute)",
+                                   action: #selector(togglePauseWhenAllEyesClosedFromMenu),
+                                   keyEquivalent: "")
+        pauseItem.state = pauseWhenAllEyesClosedEnabled ? .on : .off
+        menu.addItem(pauseItem)
         menu.addItem(.separator())
         menu.addItem(withTitle: "Settings…", action: #selector(openPreferencesFromMenu), keyEquivalent: "")
         menu.addItem(.separator())
@@ -190,6 +216,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         preferencesItem.target = self
         togglePreviewEnabledItem.target = self
         toggleSleepDetectionItem.target = self
+        togglePauseWhenAllEyesClosedItem.target = self
         toggleOverlayItem.target = self
         recenterItem.target = self
         toggleInteractionItem.target = self
@@ -201,6 +228,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         statusMenu.addItem(.separator())
         statusMenu.addItem(togglePreviewEnabledItem)
         statusMenu.addItem(toggleSleepDetectionItem)
+        statusMenu.addItem(togglePauseWhenAllEyesClosedItem)
         statusMenu.addItem(.separator())
         statusMenu.addItem(toggleOverlayItem)
         statusMenu.addItem(recenterItem)
@@ -218,6 +246,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
         toggleSleepDetectionItem.title = sleepDetectionEnabled ? "Disable sleep detection" : "Enable sleep detection"
         toggleSleepDetectionItem.state = sleepDetectionEnabled ? .on : .off
+        togglePauseWhenAllEyesClosedItem.state = pauseWhenAllEyesClosedEnabled ? .on : .off
+        togglePauseWhenAllEyesClosedItem.isEnabled = sleepDetectionEnabled
 
         toggleOverlayItem.title = overlayVisible ? "Hide overlay" : "Show overlay"
         toggleOverlayItem.isEnabled = cameraPreviewEnabled
@@ -282,6 +312,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         sleepDetectionEnabled.toggle()
     }
 
+    @objc private func togglePauseWhenAllEyesClosedFromMenu() {
+        pauseWhenAllEyesClosedEnabled.toggle()
+    }
+
     @objc private func setNotificationsOnlyMode() {
         setMode(cameraPreview: false, sleepDetection: true)
     }
@@ -335,5 +369,31 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         let item = NSMenuItem(title: title, action: selector, keyEquivalent: "")
         item.state = isActive ? .on : .off
         return item
+    }
+
+    private func pauseActiveMediaPlayback() {
+        // 16 maps to NX_KEYTYPE_PLAY, which toggles play/pause for active media.
+        let mediaPlayPauseKey: Int32 = 16
+        postMediaKey(mediaPlayPauseKey, keyDown: true)
+        postMediaKey(mediaPlayPauseKey, keyDown: false)
+    }
+
+    private func postMediaKey(_ key: Int32, keyDown: Bool) {
+        let keyState: Int32 = keyDown ? 0xA : 0xB
+        let flags = NSEvent.ModifierFlags(rawValue: 0xA00)
+        let data1 = Int((key << 16) | (keyState << 8))
+        guard let event = NSEvent.otherEvent(with: .systemDefined,
+                                             location: .zero,
+                                             modifierFlags: flags,
+                                             timestamp: 0,
+                                             windowNumber: 0,
+                                             context: nil,
+                                             subtype: 8,
+                                             data1: data1,
+                                             data2: -1),
+              let cgEvent = event.cgEvent else {
+            return
+        }
+        cgEvent.post(tap: .cghidEventTap)
     }
 }

@@ -28,9 +28,18 @@ final class PreferencesStore {
         set { defaults.set(newValue, forKey: Keys.sleepDetectionEnabled) }
     }
 
+    var pauseWhenAllEyesClosedEnabled: Bool {
+        get {
+            if defaults.object(forKey: Keys.pauseWhenAllEyesClosedEnabled) == nil { return false }
+            return defaults.bool(forKey: Keys.pauseWhenAllEyesClosedEnabled)
+        }
+        set { defaults.set(newValue, forKey: Keys.pauseWhenAllEyesClosedEnabled) }
+    }
+
     private enum Keys {
         static let showDockIcon = "com.napping.preferences.showDockIcon"
         static let cameraPreviewEnabled = "com.napping.preferences.cameraPreviewEnabled"
         static let sleepDetectionEnabled = "com.napping.preferences.sleepDetectionEnabled"
+        static let pauseWhenAllEyesClosedEnabled = "com.napping.preferences.pauseWhenAllEyesClosedEnabled"
     }
 }

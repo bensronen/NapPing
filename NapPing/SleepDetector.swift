@@ -5,6 +5,7 @@ import Vision
 final class SleepDetector: ObservableObject {
     struct Configuration: Equatable {
         var minimumClosedEyeSeconds: TimeInterval = 2.0
+        var allFacesClosedPauseSeconds: TimeInterval = 60.0
         var cooldownSeconds: TimeInterval = 12
         var processingIntervalSeconds: TimeInterval = 0.18
         var closedEyeRatioThreshold: CGFloat = 0.16
@@ -13,8 +14,10 @@ final class SleepDetector: ObservableObject {
 
     @Published private(set) var isSleeping = false
     private var isEnabled = true
+    private var pauseWhenAllEyesClosedEnabled = false
 
     let sleepDetected = PassthroughSubject<Void, Never>()
+    let allFacesClosedLongEnough = PassthroughSubject<Void, Never>()
 
     private let configuration: Configuration
     private let processingQueue = DispatchQueue(label: "com.napping.sleepdetector", qos: .userInitiated)
@@ -22,8 +25,10 @@ final class SleepDetector: ObservableObject {
 
     private var lastProcessedAt: CFAbsoluteTime = 0
     private var closedEyesSince: CFAbsoluteTime?
+    private var allFacesClosedSince: CFAbsoluteTime?
     private var lastNotificationAt: CFAbsoluteTime = 0
     private var hasEmittedForCurrentSleep = false
+    private var hasEmittedPauseForCurrentAllClosed = false
     private var isProcessing = false
 
     init(configuration: Configuration = .init()) {
@@ -36,10 +41,23 @@ final class SleepDetector: ObservableObject {
             self.isEnabled = enabled
             if !enabled {
                 self.closedEyesSince = nil
+                self.allFacesClosedSince = nil
                 self.hasEmittedForCurrentSleep = false
+                self.hasEmittedPauseForCurrentAllClosed = false
                 DispatchQueue.main.async { [weak self] in
                     self?.isSleeping = false
                 }
+            }
+        }
+    }
+
+    func setPauseWhenAllEyesClosedEnabled(_ enabled: Bool) {
+        processingQueue.async { [weak self] in
+            guard let self else { return }
+            self.pauseWhenAllEyesClosedEnabled = enabled
+            if !enabled {
+                self.allFacesClosedSince = nil
+                self.hasEmittedPauseForCurrentAllClosed = false
             }
         }
     }
@@ -69,7 +87,8 @@ final class SleepDetector: ObservableObject {
                 .filter { $0.confidence >= self.configuration.minimumFaceConfidence }
 
             let anyClosed = faces.contains { self.areEyesClosed(face: $0) }
-            self.updateSleepingState(anyEyesClosed: anyClosed, at: now)
+            let allClosed = !faces.isEmpty && faces.allSatisfy { self.areEyesClosed(face: $0) }
+            self.updateSleepingState(anyEyesClosed: anyClosed, allVisibleFacesEyesClosed: allClosed, at: now)
         }
 
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
@@ -80,7 +99,9 @@ final class SleepDetector: ObservableObject {
         }
     }
 
-    private func updateSleepingState(anyEyesClosed: Bool, at now: CFAbsoluteTime) {
+    private func updateSleepingState(anyEyesClosed: Bool,
+                                     allVisibleFacesEyesClosed: Bool,
+                                     at now: CFAbsoluteTime) {
         if anyEyesClosed {
             closedEyesSince = closedEyesSince ?? now
         } else {
@@ -91,8 +112,25 @@ final class SleepDetector: ObservableObject {
         let closedDuration = closedEyesSince.map { now - $0 } ?? 0
         let sleepingNow = closedDuration >= configuration.minimumClosedEyeSeconds
 
+        if pauseWhenAllEyesClosedEnabled && allVisibleFacesEyesClosed {
+            allFacesClosedSince = allFacesClosedSince ?? now
+        } else {
+            allFacesClosedSince = nil
+            hasEmittedPauseForCurrentAllClosed = false
+        }
+
+        let allClosedDuration = allFacesClosedSince.map { now - $0 } ?? 0
+        let shouldPauseNow = allClosedDuration >= configuration.allFacesClosedPauseSeconds
+
         if !sleepingNow {
             hasEmittedForCurrentSleep = false
+        }
+
+        if shouldPauseNow, !hasEmittedPauseForCurrentAllClosed {
+            hasEmittedPauseForCurrentAllClosed = true
+            DispatchQueue.main.async { [weak self] in
+                self?.allFacesClosedLongEnough.send(())
+            }
         }
 
         if sleepingNow,
